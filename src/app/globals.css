@@ -94,6 +94,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+/* body {
+  background-color: #292929;
+} */
 
 a {
   color: inherit;
