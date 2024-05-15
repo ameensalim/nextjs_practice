@@ -22,7 +22,8 @@ function Login() {
         setUser({ ...user, [name]: value })
     }
 
-    async function handleSubmit() {
+    async function handleSubmit(e:any) {
+        e.preventDefault();
         try {
             setLoading(true);
             const result = await axios.post("/api/users/login", user)
@@ -51,7 +52,9 @@ function Login() {
             <Toaster />
             <div className='w-100 vw-100 vh-100 d-flex justify-content-center align-items-center'>
                 <div >
+                    <form onSubmit={handleSubmit}>
                     <h1 className="h1 text-center">{loading? "processing" : "login"}</h1>
+
                     <div className="form-group py-2">
                         <label htmlFor="exampleInputEmail1">Email address</label>
                         <input value={user.email} onChange={handleUser} name='email' type="email" className="form-control" placeholder="Enter email" />
@@ -62,10 +65,11 @@ function Login() {
                         <input value={user.password} onChange={handleUser} name='password' type="password" className="form-control" placeholder="Password" />
                     </div>
 
-                    <button disabled={buttonDisabled? true : false} onClick={handleSubmit} type="button" className=" btn btn-primary">Login</button>
+                    <button disabled={buttonDisabled? true : false}  type="submit" className=" btn btn-primary">Login</button>
                     <div className='text-secondary float-end' style={{ fontSize: "14px" }}>
                         <Link href="/signup">New user?</Link>
                     </div>
+                    </form>
 
                 </div>
             </div>
